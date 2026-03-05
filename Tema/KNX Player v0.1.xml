@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover' name='viewport'/>
+    <title><data:blog.pageTitle/></title>
+    
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap' rel='stylesheet'/>
+    <link href='https://cdn.plyr.io/3.7.8/plyr.css' rel='stylesheet'/>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'/>
+
+    <b:skin><![CDATA[
+    /* * MODERN PLAYER THEME - MOBILE FIXED
+     */
+    
+    :root {
+        --primary-color: #6366f1;
+        --primary-hover: #4f46e5;
+        --accent-color: #ec4899;
+        --bg-dark: #0f172a;
+        --glass-bg: rgba(30, 41, 59, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+    }
+
+    body { 
+        margin: 0; padding: 0;
+        background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+        color: var(--text-main); 
+        font-family: 'Inter', sans-serif; 
+        height: 100vh;
+        /* Mobil kaydırmayı engelle */
+        height: 100dvh; 
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- LOADING EKRANI --- */
+    #loading-screen {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: #0f172a;
+        z-index: 999999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .loader {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(99, 102, 241, 0.1);
+        border-left-color: var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s cubic-bezier(0.55, 0.055, 0.675, 0.19) infinite;
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* --- GİRİŞ EKRANI --- */
+    #generator-screen {
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
+        height: 100%; width: 100%;
+        position: relative;
+        z-index: 20;
+        overflow-y: auto; /* Küçük ekranlarda içerik taşarsa kaydırılsın */
+    }
+
+    .card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 40px;
+        border-radius: 24px;
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        width: 90%; max-width: 480px;
+        transition: transform 0.3s ease;
+    }
+    
+    .card:hover { transform: translateY(-5px); }
+
+    h2 { 
+        margin: 0 0 30px 0; 
+        color: #fff; 
+        font-size: 24px; 
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    
+    h2 i { color: var(--primary-color); text-shadow: 0 0 15px rgba(99,102,241,0.5); }
+
+    .input-group { margin-bottom: 20px; text-align: left; }
+    .input-group label { 
+        display: block; font-size: 12px; 
+        color: var(--text-muted); 
+        margin-bottom: 8px; 
+        font-weight: 600; 
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    input[type="text"] {
+        width: 100%; padding: 16px;
+        background: rgba(0, 0, 0, 0.2); 
+        border: 1px solid var(--glass-border);
+        color: #fff; 
+        border-radius: 12px; 
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+    
+    input[type="text"]:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    button.generate-btn {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+        color: white;
+        border: none; padding: 18px; border-radius: 12px;
+        cursor: pointer; font-weight: 700; width: 100%; margin-top: 10px;
+        font-size: 16px; 
+        letter-spacing: 0.5px;
+        box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.5);
+        transition: all 0.3s ease;
+    }
+    
+    button.generate-btn:hover { 
+        transform: translateY(-2px); 
+        box-shadow: 0 15px 25px -10px rgba(99, 102, 241, 0.6);
+    }
+
+    .result-box {
+        margin-top: 25px; padding: 20px;
+        background: rgba(0,0,0,0.3); 
+        border: 1px dashed rgba(255,255,255,0.2);
+        word-break: break-all; display: none; 
+        border-radius: 12px;
+        text-align: left;
+    }
+    .result-box p { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: var(--text-muted); }
+    .result-box a { 
+        color: var(--accent-color); 
+        text-decoration: none; 
+        font-size: 13px; 
+        font-family: monospace;
+        line-height: 1.4;
+    }
+
+    /* --- PLAYER EKRANI --- */
+    #player-wrapper {
+        position: absolute; top: 0; left: 0; 
+        width: 100%; 
+        height: 100%;
+        height: 100dvh; /* Dynamic Viewport Height: Mobil tarayıcı çubuğu sorununu çözer */
+        z-index: 50; background: #000; display: none;
+    }
+    
+    .plyr { width: 100%; height: 100%; font-family: 'Inter', sans-serif; }
+    
+    /* Mobil Fullscreen Fix */
+    .plyr--fullscreen-enabled [data-plyr=fullscreen] { display: block !important; }
+
+    .plyr--full-ui input[type=range] { color: var(--primary-color); }
+    .plyr__control--overlaid { background: rgba(99, 102, 241, 0.9); }
+
+    /* Modern Dil Değiştirme Paneli */
+    #lang-switcher {
+        position: absolute; top: 25px; right: 25px;
+        z-index: 9999; 
+        background: rgba(15, 23, 42, 0.6); 
+        padding: 6px; 
+        border-radius: 50px; 
+        display: flex; gap: 4px;
+        backdrop-filter: blur(10px);
+        display: none; 
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    
+    .lang-btn {
+        background: transparent; 
+        border: none;
+        color: var(--text-muted); 
+        padding: 10px 18px;
+        cursor: pointer; 
+        font-size: 13px; 
+        border-radius: 40px;
+        font-weight: 600; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex; align-items: center; gap: 8px;
+    }
+    
+    .lang-btn i { font-size: 14px; }
+    .lang-btn.active {
+        background: var(--primary-color); 
+        color: #fff; 
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    @media (max-width: 500px) {
+        #lang-switcher { top: 15px; right: 15px; padding: 4px; }
+        .lang-btn { padding: 8px 12px; font-size: 12px; }
+        .card { padding: 25px; width: 85%; margin-top: 20px; margin-bottom: 20px;}
+    }
+
+    .section, .widget { display: none !important; }
+    ]]></b:skin>
+</head>
+<body>
+
+    <div id='loading-screen'>
+        <div class='loader'/>
+    </div>
+
+    <b:section id='main' showaddelement='no'>
+      <b:widget id='Blog1' locked='true' title='Blog Kayıtları' type='Blog' version='1'>
+        <b:widget-settings>
+          <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+          <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
+          <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+          <b:widget-setting name='authorLabel'>By</b:widget-setting>
+          <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+          <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+          <b:widget-setting name='showAuthor'>true</b:widget-setting>
+          <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
+          <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+          <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+          <b:widget-setting name='reactionsLabel'/>
+          <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+          <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+          <b:widget-setting name='showLabels'>true</b:widget-setting>
+          <b:widget-setting name='showLocation'>true</b:widget-setting>
+          <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+          <b:widget-setting name='postsPerAd'>3</b:widget-setting>
+          <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+          <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+          <b:widget-setting name='showInlineAds'>true</b:widget-setting>
+          <b:widget-setting name='showReactions'>false</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main' var='top'/>
+        <b:includable id='backlinkDeleteIcon' var='backlink'/>
+        <b:includable id='backlinks' var='post'/>
+        <b:includable id='comment-form' var='post'/>
+        <b:includable id='commentDeleteIcon' var='comment'/>
+        <b:includable id='comment_count_picker' var='post'/>
+        <b:includable id='comment_picker' var='post'/>
+        <b:includable id='comments' var='post'/>
+        <b:includable id='feedLinks'/>
+        <b:includable id='feedLinksBody' var='links'/>
+        <b:includable id='iframe_comments' var='post'/>
+        <b:includable id='mobile-index-post' var='post'/>
+        <b:includable id='mobile-main' var='top'/>
+        <b:includable id='mobile-nextprev'/>
+        <b:includable id='mobile-post' var='post'/>
+        <b:includable id='nextprev'/>
+        <b:includable id='post' var='post'/>
+        <b:includable id='postQuickEdit' var='post'/>
+        <b:includable id='shareButtons' var='post'/>
+        <b:includable id='status-message'/>
+        <b:includable id='threaded-comment-form' var='post'/>
+        <b:includable id='threaded_comment_js' var='post'/>
+        <b:includable id='threaded_comments' var='post'/>
+      </b:widget>
+    </b:section>
+
+    <div id='generator-screen'>
+        <div class='card'>
+            <h2><i class='fas fa-play-circle'/> Player Oluşturucu</h2>
+            
+            <div class='input-group'>
+                <label>1. Orijinal / Altyazılı Video (MP4)</label>
+                <input id='vidOriginal' placeholder='Örn: https://site.com/video.mp4' type='text'/>
+            </div>
+
+            <div class='input-group'>
+                <label>2. Türkçe Dublaj Video (MP4)</label>
+                <input id='vidDubbed' placeholder='(Opsiyonel) Dublaj linki...' type='text'/>
+            </div>
+
+            <div class='input-group'>
+                <label>3. Altyazı Dosyası (.vtt)</label>
+                <input id='vidSub' placeholder='(Opsiyonel) .vtt linki...' type='text'/>
+            </div>
+
+            <button class='generate-btn' onclick='createLink()'>
+                <i class='fas fa-magic'/> OLUŞTUR VE İZLE
+            </button>
+            
+            <div class='result-box' id='resultArea'>
+                <p>Hazır Linkiniz:</p>
+                <a href='#' id='generatedLink' target='_blank'/>
+            </div>
+        </div>
+    </div>
+
+    <div id='player-wrapper'>
+        <div id='lang-switcher'>
+            <button class='lang-btn active' id='btn-en' onclick='changeLang(&apos;en&apos;)'>
+                <i class='fas fa-closed-captioning'/> Altyazılı
+            </button>
+            <button class='lang-btn' id='btn-tr' onclick='changeLang(&apos;tr&apos;)'>
+                <i class='fas fa-microphone-lines'/> Dublaj
+            </button>
+        </div>
+
+        <video controls='controls' id='player' playsinline='playsinline'>
+            <source src='' type='video/mp4'/>
+        </video>
+    </div>
+
+    <script src='https://cdn.plyr.io/3.7.8/plyr.js'/>
+    <script>
+    //<![CDATA[
+    let player;
+    let linkEn = "";
+    let linkTr = "";
+    let linkSub = "";
+    let currentLang = "en";
+
+    window.onload = function() {
+        // Loading
+        setTimeout(function() {
+            var loader = document.getElementById('loading-screen');
+            if(loader) {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }
+        }, 3000); 
+
+        const urlParams = new URLSearchParams(window.location.search);
+        linkEn = urlParams.get('v');
+        linkTr = urlParams.get('d');
+        linkSub = urlParams.get('s');
+
+        const generatorScreen = document.getElementById('generator-screen');
+        const playerWrapper = document.getElementById('player-wrapper');
+        const switcher = document.getElementById('lang-switcher');
+
+        if (linkEn) {
+            generatorScreen.style.display = 'none';
+            playerWrapper.style.display = 'block';
+
+            if(linkTr && linkTr.length > 5) {
+                switcher.style.display = 'flex';
+            }
+            initPlayer(linkEn, linkSub);
+        }
+        else {
+            generatorScreen.style.display = 'flex';
+        }
+    };
+
+    function initPlayer(videoSource, subSource) {
+        let tracks = [];
+        if(subSource && subSource.length > 5) {
+            tracks.push({
+                kind: 'captions', label: 'Türkçe', srclang: 'tr', src: subSource, default: true
+            });
+        }
+
+        player = new Plyr('#player', {
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'fullscreen'],
+            autoplay: true,
+            // MOBİL TAM EKRAN İÇİN KRİTİK AYARLAR:
+            fullscreen: { 
+                enabled: true, 
+                fallback: true, 
+                iosNative: true, // iPhone'da yerel player'ı açar (en iyi çözüm)
+                container: null 
+            },
+            playsinline: true,
+            captions: { active: true, update: true, language: 'tr' }
+        });
+
+        player.source = {
+            type: 'video',
+            sources: [{ src: videoSource, type: 'video/mp4' }],
+            tracks: tracks
+        };
+    }
+
+    function changeLang(lang) {
+        if(lang === currentLang) return;
+
+        var currentTime = player.currentTime;
+        var isPaused = player.paused;
+        
+        document.getElementById('btn-en').classList.remove('active');
+        document.getElementById('btn-tr').classList.remove('active');
+        document.getElementById('btn-' + lang).classList.add('active');
+
+        let newSrc = (lang === 'tr') ? linkTr : linkEn;
+        let currentTracks = (linkSub) ? [{
+            kind: 'captions', label: 'Türkçe', srclang: 'tr', src: linkSub, default: (lang === 'en')
+        }] : [];
+
+        player.source = {
+            type: 'video',
+            sources: [{ src: newSrc, type: 'video/mp4' }],
+            tracks: currentTracks
+        };
+
+        player.once('ready', event => {
+            player.currentTime = currentTime;
+            if(!isPaused) player.play();
+        });
+
+        currentLang = lang;
+    }
+
+    function createLink() {
+        var v = document.getElementById('vidOriginal').value.trim();
+        var d = document.getElementById('vidDubbed').value.trim();
+        var s = document.getElementById('vidSub').value.trim();
+
+        if(!v) { alert("Lütfen video linki giriniz."); return; }
+
+        var baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        var finalUrl = baseUrl + "?v=" + encodeURIComponent(v);
+        
+        if(d) finalUrl += "&d=" + encodeURIComponent(d);
+        if(s) finalUrl += "&s=" + encodeURIComponent(s);
+
+        var resultBox = document.getElementById('resultArea');
+        var linkTag = document.getElementById('generatedLink');
+        
+        resultBox.style.display = 'block';
+        linkTag.innerText = finalUrl;
+        linkTag.href = finalUrl;
+    }
+    //]]>
+    </script>
+</body>
+</html>
