@@ -23,6 +23,18 @@ Aşağıda CodEX Player'ın yeteneklerini gösteren temel kod mimarisinden örne
 ### 1. HTML5 İskeleti ve HLS Entegrasyonu (`index.html`)
 HLS kütüphanesi CDN üzerinden projeye dahil edilmiş ve PiP gibi yeni butonlar arayüze eklenmiştir.
 
+---
+
+## ☕ Destek Ol
+
+Bu projeyi faydalı bulduysanız ve geliştirmeye devam etmeme destek olmak isterseniz:
+
+* [GitHub Üzerinden Sponsor Ol](https://github.com/sponsors/alisemi0)
+* [Patreon'da Destekçi Ol](https://www.patreon.com/cw/AliSemi/membership)
+
+---
+
+
 ```html
 <link rel="stylesheet" href="[https://cdn.plyr.io/3.7.8/plyr.css](https://cdn.plyr.io/3.7.8/plyr.css)" />
 <link rel="stylesheet" href="css/knx-player.css" />
