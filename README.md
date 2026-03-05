@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   # 🎬 KNX Player
   **Web Video Oynatıcı Vitrini**
 
-  [![Canlı Önizleme](https://img.shields.io/badge/🔴_Canlı_Önizleme_İçin_Tıklayın-00a8ff?style=for-the-badge&logo=googlechrome&logoColor=white)]((https://knx-player.blogspot.com/?mod=panel)
+  [![Canlı Önizleme](https://img.shields.io/badge/🔴_Canlı_Önizleme_İçin_Tıklayın-00a8ff?style=for-the-badge&logo=googlechrome&logoColor=white)](https://knx-player.blogspot.com/?mod=panel)
 
   [![Lisans: MIT](https://img.shields.io/badge/Lisans-MIT-yellow.svg?style=flat-square)](#)
   [![Vanilla JS](https://img.shields.io/badge/Çekirdek-Vanilla_JS-f7df1e.svg?style=flat-square&logo=javascript&logoColor=black)](#)
