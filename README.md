@@ -67,6 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
   [![Vanilla JS](https://img.shields.io/badge/Çekirdek-Vanilla_JS-f7df1e.svg?style=flat-square&logo=javascript&logoColor=black)](#)
   [![HLS Desteği](https://img.shields.io/badge/Yayın-HLS_(m3u8)-ff69b4.svg?style=flat-square)](#)
 
-  *CodEX Town tarafından tasarlanan, modern "Glassmorphism" arayüzüne sahip, hafif ve yüksek performanslı web oynatıcısı.*
+  *Ali Semi tarafından tasarlanan, modern "Glassmorphism" arayüzüne sahip, hafif ve yüksek performanslı web oynatıcısı.*
 
 </div>
