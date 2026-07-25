@@ -30,7 +30,7 @@ HLS kütüphanesi CDN üzerinden projeye dahil edilmiş ve PiP gibi yeni butonla
 Bu projeyi faydalı bulduysanız ve geliştirmeye devam etmeme destek olmak isterseniz:
 
 * [GitHub Üzerinden Sponsor Ol](https://github.com/sponsors/alisemi0)
-* [Patreon'da Destekçi Ol](https://www.patreon.com/cw/AliSemi/membership)
+* [Destekçi Ol](https://www.alisemi.dev/p/destek.html)
 
 ---
 
